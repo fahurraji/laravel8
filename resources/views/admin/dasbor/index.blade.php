@@ -54,7 +54,7 @@
       <span class="info-box-icon bg-success elevation-1"><i class="fas fa-download"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Kiriman Sedang Proses</span>
+        <span class="info-box-text">Kiriman Sedang di Proses</span>
         <span class="info-box-number">
         <?php 
           $download = DB::table('pengiriman')->where('is_selesai','=','null')->get();
