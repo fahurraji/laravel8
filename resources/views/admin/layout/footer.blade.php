@@ -301,6 +301,26 @@ CKEDITOR.replace( 'kontenku',
   });
 
   </script>
+  <script>
+  //   function show(Id, element)
+  //   {
+  //       document.getElementById(Id).style.display = element.value == 2 ? 'block' : 'none';
+  //   }
+  // 
+ 
+  </script>
+  <script>
+     $(function() {
+        $('#nmr_tracking').show(); 
+        $('#layanan').change(function(){
+            if($('#layanan').val() == '2') {
+                $('#nmr_tracking').show(); 
+            } else {
+                $('#nmr_tracking').hide(); 
+            } 
+          });
+      });
+  </script>
 
 </body>
 </html>

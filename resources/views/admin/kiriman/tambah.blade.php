@@ -17,32 +17,32 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row" >
 					<label class="col-sm-3 control-label text-right">Jenis Layanan</label>
 					<div class="col-sm-3">
-						<select name="negara_tujuan" class="form-control">
-							<option value="POS">POS</option>
-							<option value="DHL">DHL</option>
-							<option value="LAINNYA">LAINNYA</option>
+						<select name="layanan" id="layanan" class="form-control" required>
+							<option value="0">-- Pilih --</option>
+							<option value="1">Manual Tracking</option>
+							<option value="2">Ekspedisi Tracking</option>
 						</select>
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row" id="nmr_tracking">
 					<label class="col-sm-3 control-label text-right">Nomor Ekspedisi</label>
-					<div class="col-sm-6">
-						<input type="text" name="nmr_ekpedisi" class="form-control" placeholder="Nomor Ekspedisi" value="{{ old('nmr_ekpedisi') }}" required>
+					<div class="col-sm-3">
+						<input type="text" name="nmr_ekpedisi" id="nmr_ekpedisi" class="form-control" placeholder="Nomor Ekspedisi" value="{{ old('nmr_ekpedisi') }}" style="text-transform:uppercase">
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row" >
 					<label class="col-sm-3 control-label text-right">Nama Pengirim</label>
 					<div class="col-sm-6">
 						<input type="text" name="nama_pengirim" class="form-control" placeholder="Nama Pengirim" value="{{ old('nama_pengirim') }}" required>
 					</div>
 				</div>
 
-				<div class="form-group row">
+				<div class="form-group row" >
 					<label class="col-sm-3 control-label text-right">Alamat Pengirim</label>
 					<div class="col-sm-9">
 						<textarea name="alamat_pengirim" class="form-control" placeholder="alamat pengirim">{{ old('alamat_pengirim') }}</textarea>
@@ -92,20 +92,13 @@
 					<label class="col-sm-3 control-label text-right">Status Kirim</label>
 					<div class="col-sm-6">
 						<select name="status_kirim" class="form-control">
-							
-							<option value="1">Barang Siap Dikirim</option>
-							<option value="2">Barang Dalam Proses Pengiriman</option>
-							<option value="3">Barang Dalam Proses Transit</option>
-							<option value="4">Barang Sampai Di Tempat Tujuan</option>
-							<option value="5">Barang Diterima - Selesai</option>
+						@php
+							$data = DB::table('status_kirim')->get();
+							foreach($data as $dt){
+								echo "<option value=".$dt->id.">".$dt->keterangan."</option>";
+							}
+						@endphp
 						</select>
-{{-- 						
-						<select name="id_kategori_galeri" class="form-control">
-							<?php foreach($kategori_galeri as $kategori_galeri) { ?>
-							<option value="<?php echo $kategori_galeri->id_kategori_galeri ?>"><?php echo $kategori_galeri->nama_kategori_galeri ?></option>
-							<?php } ?>
-						
-						</select> --}}
 					</div>
 				</div>
 

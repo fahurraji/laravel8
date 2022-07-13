@@ -174,6 +174,8 @@ $site                 = DB::table('konfigurasi')->first();
       position: absolute;
       width: 1px;
     }
+
+
   </style>
 
   

@@ -105,9 +105,11 @@ class Track extends Controller
         $status = $request->id_status;
       
         if(!empty($status)) {
+            $ket = DB::table('status_kirim')->select('keterangan')->where('id',$status)->first();
             DB::table('log_status_kirim')->insert([
                 'nmr_resi'          => $request->nmr_resi,
                 'id_status'         => $status,
+                'keterangan'        => $ket->keterangan,
                 'created_at'        => date('Y-m-d H:i:s'),
                 'created_by'       => Session()->get('id_user'),      
             ]);

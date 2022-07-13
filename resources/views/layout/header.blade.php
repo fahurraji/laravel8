@@ -48,9 +48,9 @@
                 <div class="navbar-nav m-auto py-0">
                     <a href="{{url('home')}}" class="nav-item nav-link active">Home</a>
                     {{-- <a href="#" class="nav-item nav-link">About</a> --}}
-                    <a href="#" class="nav-item nav-link">Service</a>
-                   
                     <a href="#" class="nav-item nav-link">Contact</a>
+                   
+                    <a href="{{url('faq')}}" class="nav-item nav-link">FAQ</a>
                 </div>
                 {{-- <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Get A Quote</a> --}}
             </div>

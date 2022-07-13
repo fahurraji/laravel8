@@ -53,21 +53,16 @@ class Kiriman extends Controller
     public function tambah(Request $request)
     {
         if(Session()->get('username')=="") { return redirect('login')->with(['warning' => 'Mohon maaf, Anda belum login']);}
-        request()->validate([
-                            'nmr_ekpedisi'     => 'required|unique:pengiriman',
-                            'nama_pengirim'     => 'required|unique:pengiriman',
-                            
-                            ]);
-        // // UPLOAD START
         // $resi   = $request->nmr_resi;
         $pertama = date('ymd');
         $kedua = rand(100,999);
         $resi = 'KCS'.$pertama.$kedua;
 
-
+        $nmr_ekspedisi = $request->nmr_ekspedisi;
         if(!empty($resi)) {
             DB::table('pengiriman')->insert([
                 'nmr_resi'         => $resi,
+                'layanan'          => $request->layanan,
                 'nmr_ekpedisi'        => $request->nmr_ekpedisi,
                 'nama_pengirim'    => $request->nama_pengirim,
                 'alamat_pengirim'         => $request->alamat_pengirim,
@@ -82,17 +77,28 @@ class Kiriman extends Controller
                 'created_by'       => Session()->get('id_user'),
                 
             ]);
-            DB::table('log_status_kirim')->insert([
-                'nmr_resi'         => $resi,
-                'id_status'        => $request->status_kirim,
-                'created_at'       => date('Y-m-d H:i:s'),
-                'created_by'       => Session()->get('id_user'),
-            ]);
+
+            if(!empty($nmr_ekspedisi))
+            {
+                $this->regis_api($nmr_ekspedisi);
+            }
+            else 
+            {
+                $ket = DB::table('status_kirim')->select('keterangan')->where('id',$request->status_kirim)->first();
+                DB::table('log_status_kirim')->insert([
+                    'nmr_resi'         => $resi,
+                    'id_status'        => $request->status_kirim,
+                    'keterangan'       => $ket->keterangan,
+                    'created_at'       => date('Y-m-d H:i:s'),
+                    'created_by'       => Session()->get('id_user'),
+                ]);
+            }
             return redirect('admin/kiriman')->with(['sukses' => 'Data telah ditambah']);
         }else{
             // UPLOAD START       
             DB::table('pengiriman')->insert([
                 'nmr_resi'         => $resi,
+                'layanan'          => $request->layanan,
                 'nmr_ekpedisi'        => $request->nmr_ekpedisi,
                 'nama_pengirim'    => $request->nama_pengirim,
                 'alamat_pengirim'         => $request->alamat_pengirim,
@@ -125,9 +131,11 @@ class Kiriman extends Controller
                             ]);
        
         $resi                  = $request->nmr_resi;
+        $nmr_ekspedisi = $request->nmr_ekpedisi;
         if(!empty($resi)) {
             DB::table('pengiriman')->where('id',$request->id)->update([
                 'nmr_resi'         => $request->nmr_resi,
+                'layanan'          => $request->layanan,
                 'nmr_ekpedisi'        => $request->nmr_ekpedisi,
                 'nama_pengirim'    => $request->nama_pengirim,
                 'alamat_pengirim'         => $request->alamat_pengirim,
@@ -141,10 +149,15 @@ class Kiriman extends Controller
                 'total'        => $request->total,
                 'created_by'       => Session()->get('id_user'),
             ]);
+            if(!empty($nmr_ekspedisi))
+            {
+                $this->regis_api($nmr_ekspedisi);
+            }
             return redirect('admin/kiriman')->with(['sukses' => 'Data telah diupdate']);
         }else{
             DB::table('pengiriman')->where('id',$request->id_kirim)->update([
                 'nmr_resi'         => $request->nmr_resi,
+                'layanan'          => $request->layanan,
                 'nmr_ekpedisi'        => $request->nmr_ekpedisi,
                 'nama_pengirim'    => $request->nama_pengirim,
                 'alamat_pengirim'         => $request->alamat_pengirim,
@@ -171,5 +184,32 @@ class Kiriman extends Controller
         DB::table('pengiriman')->where('id',$id_kirim)->delete();
         DB::table('log_status_kirim')->where('nmr_resi',$resi)->delete();
         return redirect('admin/kiriman')->with(['sukses' => 'Data telah dihapus']);
+    }
+
+    public function regis_api($nmr_ekspedisi)
+    {
+        if(!empty($nmr_ekspedisi)){
+            
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://api.17track.net/track/v2/register');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "[\n            {\n              \"number\": \"$nmr_ekspedisi\"\n            }\n          ]");
+
+            $headers = array();
+            $headers[] = "17token:5AFFA2C69919E824E9F8E121DD87216C";
+            $headers[] = "Content-Type: application/json";
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $result = curl_exec($ch);
+            if (curl_errno($ch)) {
+                echo 'Error:' . curl_error($ch);
+            }
+
+
+            curl_close($ch);
+            print_r($result);
+        }
     }
 }

@@ -37,6 +37,7 @@ Route::get('aksi', 'App\Http\Controllers\Aksi@index');
 Route::get('aksi/status/{par1}', 'App\Http\Controllers\Aksi@status');
 Route::get('track','App\Http\Controllers\Home@track');
 Route::get('result','App\Http\Controllers\Home@result');
+Route::get('faq','App\Http\Controllers\Home@faq');
 
 // Login
 Route::get('login', 'App\Http\Controllers\Login@index');
@@ -120,7 +121,13 @@ Route::post('admin/heading/edit', 'App\Http\Controllers\Admin\Heading@edit');
 Route::get('admin/heading/delete/{par1}', 'App\Http\Controllers\Admin\Heading@delete');
 // status
 
-// video
+// faq
+Route::get('admin/faq', 'App\Http\Controllers\Admin\Faq@index');
+Route::post('admin/faq/tambah', 'App\Http\Controllers\Admin\Faq@tambah');
+Route::get('admin/faq/edit/{par1}', 'App\Http\Controllers\Admin\Faq@edit');
+Route::post('admin/faq/proses_edit', 'App\Http\Controllers\Admin\Faq@proses_edit');
+Route::get('admin/faq/delete/{par1}', 'App\Http\Controllers\Admin\Faq@delete');
+Route::post('admin/faq/proses', 'App\Http\Controllers\Admin\Faq@proses');
 
 
 // staff

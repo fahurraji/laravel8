@@ -11,7 +11,7 @@
       
      
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ asset('/') }}" target="_blank" class="nav-link"><i class="fa fa-home"></i> Beranda</a>
+        <a href="{{ asset('/admin/dasbor') }}" class="nav-link"><i class="fa fa-home"></i> Beranda</a>
       </li>
     </ul>
 

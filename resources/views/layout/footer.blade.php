@@ -28,18 +28,7 @@
               </div>
           </div>
       </div>
-      {{-- <div class="col-lg-5 col-md-6 mb-5">
-          <h3 class="text-primary mb-4">Newsletter</h3>
-          <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
-          <div class="w-100">
-              <div class="input-group">
-                  <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
-                  <div class="input-group-append">
-                      <button class="btn btn-primary px-4">Sign Up</button>
-                  </div>
-              </div>
-          </div>
-      </div> --}}
+ 
   </div>
 </div>
 <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: #3E3E4E !important;">
@@ -64,17 +53,22 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+{{-- <script src="lib/easing/easing.min.js"></script> --}}
+{{-- <script src="lib/waypoints/waypoints.min.js"></script> --}}
+{{-- <script src="{{asset('assets/lib/counterup/counterup.min.js')}}"></script> --}}
+{{-- <script src="{{asset('assets/aws/js/owl.carousel.min.js')}}"></script> --}}
 
 <!-- Contact Javascript File -->
-<script src="mail/jqBootstrapValidation.min.js"></script>
-<script src="mail/contact.js"></script>
+{{-- <script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script> --}}
 
 <!-- Template Javascript -->
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 <script>
     $('input').bind('input', function() {
         var c = this.selectionStart,

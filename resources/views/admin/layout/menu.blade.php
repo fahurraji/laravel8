@@ -47,8 +47,14 @@
           </li>
           <li class="nav-item">
             <a href="{{ asset('admin/track') }}" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-truck"></i>
               <p>Update Status Kiriman</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ asset('admin/faq') }}" class="nav-link">
+              <i class="nav-icon fas fa-question-circle"></i>
+              <p>FAQ</p>
             </a>
           </li>
 
@@ -60,13 +66,13 @@
           <li class="batas"><hr></li>
           <li class="nav-item">
             <a href="{{ asset('admin/status') }}" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-road"></i>
               <p>Status Kirim</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ asset('admin/user') }}" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>Users</p>
             </a>
           </li>

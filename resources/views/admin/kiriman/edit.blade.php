@@ -22,18 +22,17 @@
 <div class="form-group row">
     <label class="col-sm-3 control-label text-right">Jenis Layanan</label>
     <div class="col-sm-3">
-        <select name="negara_tujuan" class="form-control">
-            <option value="POS" <?php if($kirim->layanan=="POS") { echo "selected"; } ?>>POS</option>
-            <option value="DHL" <?php if($kirim->layanan=="DHL") { echo "selected"; } ?>>DHL</option>
-            <option value="LAINNYA" <?php if($kirim->layanan=="LAINNYA") { echo "selected"; } ?>>LAINNYA</option>
+        <select name="layanan" id="layanan" class="form-control">
+            <option value="1" <?php if($kirim->layanan=="1") { echo "selected"; } ?>>Manual Tracking</option>
+            <option value="2" <?php if($kirim->layanan=="2") { echo "selected"; } ?>>Ekspedisi Tracking</option>
         </select>
     </div>
 </div>
 
-<div class="form-group row">
+<div class="form-group row" id="nmr_tracking">
     <label class="col-sm-3 control-label text-right">Nomor Ekspedisi</label>
     <div class="col-sm-6">
-        <input type="text" name="nmr_ekpedisi" class="form-control" value="<?php echo $kirim->nmr_ekpedisi ?>" required>
+        <input type="text" name="nmr_ekpedisi" class="form-control" value="<?php echo $kirim->nmr_ekpedisi ?>" >
     </div>
 </div>
 
